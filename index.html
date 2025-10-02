@@ -5,278 +5,96 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Cy Khaldi — Mechanical Engineer</title>
   <meta name="description" content="Portfolio of Cy Khaldi — mechanical engineering student showcasing projects, research, and experience." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
   <style>
     :root{
-      /* Monochrome retro scheme */
-      --bg:#000; --bg-soft:#0e0e10; --card:#111; --text:#e6e6e6; --muted:#9a9a9a; --accent:#bfbfbf; --accent-2:#7a7a7a; --ring:0 0 0 3px rgba(200,200,200,.18);
+      --bg:#000; --card:#111; --text:#e6e6e6; --muted:#9a9a9a; --accent:#bfbfbf;
     }
     *,*::before,*::after{box-sizing:border-box}
     html,body{height:100%}
-    body{margin:0; font-family:VT323, ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; font-size:20px; letter-spacing:.2px; background:var(--bg); color:var(--text); overflow-x:hidden}
-    h1,h2,h3,h4{font-family:"Press Start 2P", VT323, monospace; letter-spacing:1px}
-    a{color:inherit; text-decoration:none}
-    img{max-width:100%; height:auto; display:block}
-    .container{max-width:1100px; margin-inline:auto; padding:24px}
+    body{margin:0; font-family:VT323, monospace; font-size:20px; background:var(--bg); color:var(--text); overflow-x:hidden}
+    h1,h2,h3,h4{font-family:"Press Start 2P", monospace;}
 
-    /* === Retro animated thermal background (subtle grayscale flow) === */
+    /* === Subtle animated thermal gradient background === */
     body::before{
-      content:""; position:fixed; inset:-20vh -20vw; z-index:-2; filter:contrast(140%) brightness(85%);
+      content:""; position:fixed; inset:0; z-index:-2;
       background:
-        radial-gradient(60vh 60vh at 20% 30%, #222 0%, transparent 60%),
-        radial-gradient(50vh 50vh at 80% 40%, #1a1a1a 0%, transparent 60%),
-        radial-gradient(70vh 70vh at 40% 80%, #2a2a2a 0%, transparent 65%),
-        radial-gradient(65vh 65vh at 70% 75%, #1c1c1c 0%, transparent 60%);
-      animation:drift 60s linear infinite alternate;
-      background-blend-mode:screen;
+        radial-gradient(60vh 60vh at 20% 30%, #1a1a1a 0%, transparent 70%),
+        radial-gradient(70vh 70vh at 70% 60%, #2a2a2a 0%, transparent 75%),
+        radial-gradient(80vh 80vh at 40% 80%, #141414 0%, transparent 70%);
+      background-repeat:no-repeat;
+      animation:drift 60s ease-in-out infinite alternate;
     }
     @keyframes drift{
-      0%{transform:translate3d(-2%, -1%, 0) scale(1.05)}
-      50%{transform:translate3d(1%, 2%, 0) scale(1.08)}
-      100%{transform:translate3d(3%, -2%, 0) scale(1.1)}
+      0%{transform:translate3d(-3%,-2%,0) scale(1.05)}
+      50%{transform:translate3d(2%,1%,0) scale(1.08)}
+      100%{transform:translate3d(3%,-2%,0) scale(1.05)}
     }
-    /* scanline CRT vibe */
     body::after{
-      content:""; position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.07;
+      content:""; position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.05;
       background:repeating-linear-gradient(to bottom, rgba(255,255,255,.05) 0 2px, transparent 2px 4px);
       mix-blend-mode:soft-light;
     }
 
-    /* === Nav === */
-    .nav{position:sticky; top:0; backdrop-filter:saturate(120%) blur(8px); background:rgba(0,0,0,.6); border-bottom:1px solid #222; z-index:10}
-    .nav-inner{display:flex; align-items:center; justify-content:space-between; gap:16px}
+    .container{max-width:1100px; margin:auto; padding:24px}
+    .nav{position:sticky; top:0; background:rgba(0,0,0,.6); border-bottom:1px solid #222; z-index:10}
+    .nav-inner{display:flex; justify-content:space-between; align-items:center}
     .brand{display:flex; align-items:center; gap:10px; font-weight:700; text-transform:uppercase}
-    .brand .dot{width:12px; height:12px; background:conic-gradient(from 0deg, #777, #bbb, #777); border-radius:2px; box-shadow:0 0 18px rgba(200,200,200,.25)}
-    .nav a{opacity:.9}
-    .nav a:hover{opacity:1}
-    .nav-links{display:flex; gap:18px; font-weight:700; font-size:14px; text-transform:uppercase}
+    .brand .dot{width:12px; height:12px; background:#777; box-shadow:0 0 8px #bbb}
+    .nav-links{display:flex; gap:18px; font-weight:700; text-transform:uppercase}
+    .btn{background:#e6e6e6; color:#111; padding:8px 12px; font-weight:900; text-transform:uppercase; box-shadow:inset -2px -2px 0 #bbb, inset 2px 2px 0 #fff}
 
-    /* Pixel-styled button */
-    .btn{display:inline-flex; align-items:center; gap:10px; background:#e6e6e6; color:#111; padding:10px 14px; border-radius:0; font-weight:900; box-shadow:inset -3px -3px 0 #bdbdbd, inset 3px 3px 0 #fff, 0 0 0 2px #333; text-transform:uppercase}
-    .btn:hover{transform:translateY(-1px)}
+    .hero{display:grid; grid-template-columns:1.2fr .8fr; gap:28px; align-items:center; padding:56px 0}
+    .tag{display:inline-block; background:#bfbfbf; color:#111; padding:4px 8px; font-weight:900; text-transform:uppercase}
+    h1{font-size:32px; line-height:1.3}
+    .lead{font-size:18px; color:var(--muted); max-width:60ch}
+    .hero-card{background:rgba(255,255,255,.03); border:1px solid #222; border-radius:8px; padding:20px}
 
-    /* Hero */
-    .hero{display:grid; grid-template-columns:1.1fr .9fr; gap:28px; align-items:center; padding:56px 0}
-    .tag{display:inline-block; font-size:12px; letter-spacing:1px; text-transform:uppercase; color:#111; background:#bfbfbf; padding:6px 10px; border-radius:0; font-weight:900; box-shadow:0 0 0 2px #333}
-    h1{font-size:32px; line-height:1.3; margin:18px 0 10px}
-    .lead{font-size:20px; color:var(--muted); max-width:65ch}
-    .hero-card{background:linear-gradient(180deg,rgba(255,255,255,.03), rgba(255,255,255,.02)); border:1px solid #222; border-radius:8px; padding:20px}
-    .hero-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:14px}
-    .mini{padding:16px; border-radius:6px; background:var(--card); border:1px solid #242424}
-    .mini h4{margin:0 0 4px; font-size:16px}
-    .mini p{margin:0; font-size:18px; color:var(--muted)}
-
-    /* Sections */
-    section{padding:24px 0 8px}
-    .section-title{display:flex; align-items:center; justify-content:space-between; margin:12px 0 14px}
-    .section-title h2{margin:0; font-size:18px}
+    section{padding:24px 0}
+    .section-title{display:flex; justify-content:space-between; align-items:center; margin-bottom:12px}
     .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
-    .card{background:var(--card); border:1px solid #242424; border-radius:8px; padding:16px}
-    .card h3{margin:10px 0 6px; font-size:18px}
-    .meta{font-size:16px; color:var(--muted)}
-    .pill{display:inline-flex; align-items:center; gap:6px; padding:6px 10px; border-radius:0; border:1px solid #333; background:#0d0d0d; font-size:16px; color:var(--muted); text-transform:uppercase}
-    .pills{display:flex; flex-wrap:wrap; gap:8px}
+    .card{background:var(--card); border:1px solid #222; border-radius:8px; padding:16px}
 
-    .timeline{display:grid; gap:12px}
-    .item{display:grid; grid-template-columns:120px 1fr; gap:16px; align-items:start}
-    .item time{font-size:16px; color:var(--muted)}
-    .item .role{font-weight:900; text-transform:uppercase}
-
-    .footer{padding:42px 0 56px; color:var(--muted); text-align:center}
-    .socials{display:flex; gap:12px; justify-content:center}
-    .icon{width:18px; height:18px; opacity:.8}
-    .card:hover, .mini:hover{box-shadow:0 0 0 0 rgba(0,0,0,0), 0 0 0 3px rgba(255,255,255,.03), 0 16px 40px rgba(0,0,0,.45)}
-
-    @media (max-width: 900px){
-      .hero{grid-template-columns:1fr}
-      .grid{grid-template-columns:1fr}
-      .item{grid-template-columns:1fr}
-    }
+    .footer{text-align:center; padding:32px; color:var(--muted)}
   </style>
 </head>
 <body>
   <header class="nav">
     <div class="container nav-inner">
-      <div class="brand"><span class="dot"></span> <span>Cy Khaldi</span></div>
+      <div class="brand"><span class="dot"></span> CY KHALDI</div>
       <nav class="nav-links">
         <a href="#projects">Projects</a>
         <a href="#experience">Experience</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
-        <a class="btn" href="/resume.pdf" target="_blank" rel="noopener">Resume</a>
+        <a class="btn" href="/resume.pdf" target="_blank">Resume</a>
       </nav>
     </div>
   </header>
 
   <main class="container">
-    <section class="hero" id="home">
+    <section class="hero">
       <div>
         <span class="tag">Mechanical Engineering @ UC Berkeley</span>
         <h1>Designing thermal systems, mechatronics, and elegant hardware.</h1>
         <p class="lead">I build reliable, testable hardware—from liquid‑cooled power distribution for data centers to precise mechatronic linkages. I enjoy CAD, FEA/CFD, control, and turning gnarly constraints into clean designs.</p>
-        <div style="margin-top:18px; display:flex; gap:10px; flex-wrap:wrap">
-          <a class="btn" href="#projects">See Projects</a>
-          <a class="pill" href="https://github.com/" target="_blank" rel="noopener" aria-label="GitHub">GitHub ↗</a>
-          <a class="pill" href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn">LinkedIn ↗</a>
-        </div>
       </div>
       <div class="hero-card">
-        <div class="hero-grid">
-          <div class="mini">
-            <h4>NVidia — Thermal R&D</h4>
-            <p>Liquid‑cooled busbar for ORv3 racks; CAD, CFD (Icepak), FEA; supplier integration; patent pending.</p>
-          </div>
-          <div class="mini">
-            <h4>Formula Electric</h4>
-            <p>Drive‑by‑wire subsystems; actuator selection; wiring & control with ESP32/MicroPython.</p>
-          </div>
-          <div class="mini">
-            <h4>Mechatronics Project</h4>
-            <p>Automatic T‑shirt folder: linkage kinematics, servo sizing, control stack, and enclosure.</p>
-          </div>
-          <div class="mini">
-            <h4>LBNL Research</h4>
-            <p>Thermal switch & PCM studies; custom fixtures; experimental protocols & analysis.</p>
-          </div>
-        </div>
+        <p>Highlight projects: NVidia busbar, Formula Electric, Mechatronics T‑shirt Folder, LBNL Research.</p>
       </div>
     </section>
 
     <section id="projects">
-      <div class="section-title">
-        <h2>Selected Projects</h2>
-        <a class="pill" href="#" title="Download one‑pager">One‑pager PDF ↗</a>
-      </div>
+      <div class="section-title"><h2>Selected Projects</h2></div>
       <div class="grid">
-        <!-- Project card -->
-        <article class="card">
-          <img src="https://images.unsplash.com/photo-1581091870622-7f3c30d3c038?q=80&w=1200&auto=format&fit=crop" alt="Copper busbar and coolant lines" />
-          <h3>Liquid‑Cooled Busbar for ORv3 Racks</h3>
-          <div class="meta">NVidia • Thermal / CAD / CFD • 2025</div>
-          <p>2‑m copper busbar with embedded coolant path. Designed insulation stack, manifold orifices, pressure‑drop & thermal performance. Built TTV prototypes and test plans; coordinated suppliers; filed patent.</p>
-          <div class="pills">
-            <span class="pill">Creo / SolidWorks</span>
-            <span class="pill">ANSYS Icepak</span>
-            <span class="pill">DFM</span>
-            <span class="pill">Testing</span>
-          </div>
-        </article>
-        <article class="card">
-          <img src="https://images.unsplash.com/photo-1528291151373-5d4d7c25ccfc?q=80&w=1200&auto=format&fit=crop" alt="Linkage and servo" />
-          <h3>Automatic T‑Shirt Folder</h3>
-          <div class="meta">ME 102B • Mechatronics • 2025</div>
-          <p>Four‑bar linkage with DS3225 servo, shoulder‑bolt joints, and timing system. Full control stack with MicroPython on ESP32; safety interlocks and torque margining.</p>
-          <div class="pills">
-            <span class="pill">Kinematics</span>
-            <span class="pill">ESP32</span>
-            <span class="pill">MicroPython</span>
-            <span class="pill">Laser‑cut / 3D print</span>
-          </div>
-        </article>
-        <article class="card">
-          <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1200&auto=format&fit=crop" alt="Lab setup" />
-          <h3>Thermal Switch & PCM Bench</h3>
-          <div class="meta">LBNL • Research • 2024–25</div>
-          <p>Designed fixtures for repeatable thermal measurements. Modeled transient behavior and validated against experimental data; created analysis notebooks & dashboards.</p>
-          <div class="pills">
-            <span class="pill">Data Analysis</span>
-            <span class="pill">Sensors</span>
-            <span class="pill">Uncertainty</span>
-          </div>
-        </article>
+        <div class="card"><h3>Liquid‑Cooled Busbar</h3><p>NVidia • CAD, CFD, DFM, Patent pending</p></div>
+        <div class="card"><h3>Automatic T‑Shirt Folder</h3><p>Mechatronics • Linkages, ESP32, Control</p></div>
+        <div class="card"><h3>Thermal Switch Research</h3><p>LBNL • Fixtures, PCM, Experiments</p></div>
       </div>
     </section>
 
-    <section id="experience">
-      <div class="section-title">
-        <h2>Experience</h2>
-        <a class="pill" href="#about">About me →</a>
-      </div>
-      <div class="timeline">
-        <div class="card item">
-          <time>Summer 2025</time>
-          <div>
-            <div class="role">Thermal Product Design Engineer Intern — NVidia</div>
-            <div class="meta">Thermal & power distribution R&D • Patent pending</div>
-            <p>Owner for a liquid‑cooled busbar concept: CAD, CFD (pressure/thermal), prototype builds, supplier DFM, and test validation plans.</p>
-          </div>
-        </div>
-        <div class="card item">
-          <time>2024–2025</time>
-          <div>
-            <div class="role">Undergraduate Researcher — LBNL</div>
-            <div class="meta">Thermal energy group • Experimental design</div>
-            <p>Developed thermal switch & PCM experiments. Implemented robust data‑acquisition, uncertainty analysis, and visualization.</p>
-          </div>
-        </div>
-        <div class="card item">
-          <time>2023–Present</time>
-          <div>
-            <div class="role">Formula Electric @ Berkeley</div>
-            <div class="meta">Actuation & controls</div>
-            <p>Drive‑/steer‑/brake‑by‑wire subsystems; actuator & linkage selection; embedded control and integration.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="about">
-      <div class="section-title">
-        <h2>About</h2>
-        <a class="pill" href="#contact">Contact →</a>
-      </div>
-      <div class="card">
-        <p>Hi, I’m Cy — a senior ME student at UC Berkeley who loves turning messy requirements into clean, testable hardware. My favorite tools are SolidWorks/Creo, ANSYS Icepak, and Python/Matlab for analysis. I care about readable CAD, instrumented tests, and collaborating with EE/firmware for fast iteration.</p>
-      </div>
-    </section>
-
-    <section id="contact">
-      <div class="section-title">
-        <h2>Get in touch</h2>
-        <a class="pill" href="mailto:cy@example.com">Email ↗</a>
-      </div>
-      <div class="grid">
-        <div class="card">
-          <h3>Email</h3>
-          <p class="meta">cy@example.com</p>
-          <p>For internships, collaborations, or to chat about thermal systems and mechatronics.</p>
-        </div>
-        <div class="card">
-          <h3>Links</h3>
-          <ul>
-            <li><a href="https://github.com/" target="_blank" rel="noopener">GitHub</a></li>
-            <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a></li>
-            <li><a href="#">Resume (PDF)</a></li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>Quick Facts</h3>
-          <ul>
-            <li>Fav domains: thermal, test, DFM</li>
-            <li>Toolchain: SolidWorks/Creo, Icepak, Matlab</li>
-            <li>Soft spot: clean drawings & BOMs</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <footer class="footer">
-      <div class="socials">
-        <a href="https://github.com/" target="_blank" rel="noopener" aria-label="GitHub">
-          <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5A11.5 11.5 0 0 0 .5 12.3c0 5.23 3.4 9.66 8.12 11.23.6.1.82-.27.82-.6v-2.1c-3.3.73-4-1.6-4-1.6-.55-1.4-1.35-1.77-1.35-1.77-1.1-.77.08-.76.08-.76 1.22.09 1.87 1.27 1.87 1.27 1.08 1.9 2.83 1.35 3.52 1.04.1-.8.42-1.35.76-1.66-2.64-.31-5.42-1.37-5.42-6.1 0-1.35.46-2.46 1.23-3.33-.12-.3-.53-1.57.12-3.26 0 0 1-.32 3.38 1.23a11.7 11.7 0 0 1 6.16 0c2.37-1.55 3.37-1.23 3.37-1.23.65 1.69.24 2.96.12 3.26.77.87 1.22 1.98 1.22 3.33 0 4.74-2.78 5.78-5.43 6.09.43.37.81 1.1.81 2.22v3.29c0 .33.21.71.82.6A11.5 11.5 0 0 0 23.5 12.3 11.5 11.5 0 0 0 12 .5Z"/></svg>
-        </a>
-        <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn">
-          <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8.98h5V24H0zM8.32 8.98H13V11h.06c.65-1.23 2.25-2.53 4.64-2.53 4.96 0 5.87 3.26 5.87 7.5V24h-5v-6.51c0-1.55-.03-3.54-2.16-3.54-2.16 0-2.49 1.69-2.49 3.43V24h-5z"/></svg>
-        </a>
-      </div>
-      <p style="margin-top:12px">© <span id="y"></span> Cy Khaldi. Built with clean HTML/CSS.</p>
-    </footer>
+    <footer class="footer">© <span id="y"></span> Cy Khaldi</footer>
   </main>
-
-  <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
-  </script>
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
 </body>
 </html>
